@@ -1,11 +1,14 @@
 package com.magicfruits.di.modules;
 
 
+import android.util.Base64;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.magicfruits.api.Api;
 import com.magicfruits.constants.Constants;
 
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -19,6 +22,8 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import rx.android.BuildConfig;
+
+import static com.magicfruits.constants.Constants.URL_FOR_CHECK;
 
 @Module
 public class ApiModule {
@@ -47,7 +52,7 @@ public class ApiModule {
     @Singleton
     Api provideRestApi(Gson gson, OkHttpClient client) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.URL_FOR_CHECK)
+                .baseUrl(decodeBase64(URL_FOR_CHECK))
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -55,6 +60,11 @@ public class ApiModule {
                 .build();
 
         return retrofit.create(Api.class);
+    }
+    private String decodeBase64(String coded) {
+        byte[] valueDecoded = new byte[0];
+        valueDecoded = Base64.decode(coded.getBytes(StandardCharsets.UTF_8), Base64.DEFAULT);
+        return new String(valueDecoded);
     }
 
 
