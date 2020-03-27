@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Magic Fruits</string>
+
+    <string name="gamer_points">Gamer points: </string>
+    <string name="diler_points">Daler points:</string>
+    <string name="stand">stand</string>
+    <string name="new_game">New Game</string>
+    <string name="exit">Exit</string>
+    <string name="hit">Hit</string>
+</resources>
