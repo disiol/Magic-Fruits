@@ -6,4 +6,7 @@ public interface MainActivityRouter {
     void showGameFragment();
 
     void showWebFragment();
+
+    void showWinFragment(boolean flag, int points);
+
 }

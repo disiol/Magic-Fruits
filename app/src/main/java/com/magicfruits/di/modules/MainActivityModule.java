@@ -5,6 +5,7 @@ import com.magicfruits.di.scopes.ActivityScope;
 import com.magicfruits.di.scopes.FragmentScope;
 import com.magicfruits.routers.main.MainActivityRouter;
 import com.magicfruits.routers.main.MainActivityRouterImpl;
+import com.magicfruits.ui.fragments.endGame.view.EndGameFragment;
 import com.magicfruits.ui.fragments.game.view.GameFragment;
 import com.magicfruits.ui.fragments.start.view.StartFragment;
 import com.magicfruits.ui.fragments.web.view.WebFragment;
@@ -31,6 +32,9 @@ public interface MainActivityModule {
     @ContributesAndroidInjector
     GameFragment gameFragment();
 
+    @FragmentScope
+    @ContributesAndroidInjector
+    EndGameFragment endGameFragment();
 
 
 }

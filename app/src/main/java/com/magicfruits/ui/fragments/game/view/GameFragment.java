@@ -3,13 +3,12 @@ package com.magicfruits.ui.fragments.game.view;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,9 +19,7 @@ import com.magicfruits.databinding.FragmentGameBinding;
 import com.magicfruits.routers.main.MainActivityRouter;
 import com.magicfruits.ui.base.BaseBindingFragment;
 import com.magicfruits.ui.fragments.game.presenter.GamePresenter;
-
-import java.util.ArrayList;
-import java.util.Random;
+import com.squareup.picasso.Picasso;
 
 import static com.magicfruits.constants.Constants.MYLOG_TEG;
 
@@ -31,20 +28,11 @@ public class GameFragment extends BaseBindingFragment<GamePresenter, FragmentGam
 
 
     public static final int MILLIS_IN_FUTURE = 3000;
+    private final ImageView[] buttonPres = new ImageView[1];
     private Animation animRotate = null;
-    private ArrayList<Integer> cards = new ArrayList<>();
-
+    private int lifes = 5;
     private int points = 0;
-    private int cardsCaunter = 52;
-    private LinearLayout dilerCardsLinearLayout;
-    private LinearLayout cardsLinearLayout;
-    private int cardNumber;
-    private Integer imageResource;
-    private ImageView deackImageView;
-    private Random random = new Random();
-    private int mimDilerPoints = 17;
-    private int dilerPoints;
-
+    private CountDownTimer countDownTimerConfirmationImageView;
 
     @Override
     public int getLayoutResId() {
@@ -56,12 +44,11 @@ public class GameFragment extends BaseBindingFragment<GamePresenter, FragmentGam
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         animRotate = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
-        setPoints(points);
-        setMimDilerPoints(points);
-        addCardsToCards();
-        dilerCardsLinearLayout = binding.dilersCards;
-        cardsLinearLayout = binding.cardsLinearLayout;
 
+        setLifesLeft(lifes);
+        setPoints(points);
+
+        forMatces(view);
 
         binding.buttonExit.setOnClickListener(v -> {
             getActivity().finish();
@@ -73,146 +60,239 @@ public class GameFragment extends BaseBindingFragment<GamePresenter, FragmentGam
         });
 
 
-        cardsLinearLayout = getView().findViewById(R.id.cards_LinearLayout);
-        cardsCaunter = cards.size() - 1;
+    }
 
-        deackImageView = binding.deackImageView;
+    private void forMatces(@NonNull View view) {
+        ImageView button1 = getActivity().findViewById(R.id.button1);
+        ImageView button2 = getActivity().findViewById(R.id.button2);
+        ImageView button3 = getActivity().findViewById(R.id.button3);
+        ImageView button4 = getActivity().findViewById(R.id.button4);
+        ImageView button5 = getActivity().findViewById(R.id.button5);
+        ImageView button6 = getActivity().findViewById(R.id.button6);
+        ImageView button7 = getActivity().findViewById(R.id.button7);
+        ImageView button8 = getActivity().findViewById(R.id.button8);
+        ImageView button9 = getActivity().findViewById(R.id.button9);
 
-        deackImageView.setOnClickListener(v -> {
+        ImageView button10 = getActivity().findViewById(R.id.button10);
+        ImageView button12 = getActivity().findViewById(R.id.button12);
+        ImageView button13 = getActivity().findViewById(R.id.button13);
+        ImageView button14 = getActivity().findViewById(R.id.button14);
+        ImageView button15 = getActivity().findViewById(R.id.button15);
+        ImageView button17 = getActivity().findViewById(R.id.button17);
+        ImageView button18 = getActivity().findViewById(R.id.button18);
+        ImageView button19 = getActivity().findViewById(R.id.button19);
+        ImageView button20 = getActivity().findViewById(R.id.button20);
+        ImageView button22 = getActivity().findViewById(R.id.button22);
+        ImageView button24 = getActivity().findViewById(R.id.button24);
 
 
-            schowCards(random, deackImageView, cardsLinearLayout, "user");
+        button1.setOnClickListener(v -> {
+            int buttonNmberForMatch = 1;
+
+            doAfterClick(buttonNmberForMatch, button1, buttonPres, view, R.drawable.mantch_1);
+
+
         });
 
-        binding.standTextView.setOnClickListener(v -> {
-            mufeDiler();
+        button2.setOnClickListener(v -> {
+            int buttonNmberForMatch = 2;
+
+            doAfterClick(buttonNmberForMatch, button2, buttonPres, view, R.drawable.mantch_2);
 
         });
+
+        button3.setOnClickListener(v -> {
+            int buttonNmberForMatch = 3;
+
+            doAfterClick(buttonNmberForMatch, button3, buttonPres, view, R.drawable.mantch_3);
+
+        });
+        button4.setOnClickListener(v -> {
+            int buttonNmberForMatch = 4;
+
+            doAfterClick(buttonNmberForMatch, button4, buttonPres, view, R.drawable.mantch_4);
+
+        });
+        button5.setOnClickListener(v -> {
+            int buttonNmberForMatch = 5;
+
+            doAfterClick(buttonNmberForMatch, button5, buttonPres, view, R.drawable.mantch_5);
+
+        });
+        button6.setOnClickListener(v -> {
+            int buttonNmberForMatch = 5;
+
+            doAfterClick(buttonNmberForMatch, button6, buttonPres, view, R.drawable.mantch_5);
+
+        });
+        button7.setOnClickListener(v -> {
+            int buttonNmberForMatch = 4;
+
+            doAfterClick(buttonNmberForMatch, button7, buttonPres, view, R.drawable.mantch_4);
+
+        });
+        button8.setOnClickListener(v -> {
+            int buttonNmberForMatch = 3;
+
+            doAfterClick(buttonNmberForMatch, button8, buttonPres, view, R.drawable.mantch_3);
+
+        });
+        button9.setOnClickListener(v -> {
+            int buttonNmberForMatch = 2;
+
+            doAfterClick(buttonNmberForMatch, button9, buttonPres, view, R.drawable.mantch_2);
+
+        });
+        button10.setOnClickListener(v -> {
+            int buttonNmberForMatch = 1;
+
+            doAfterClick(buttonNmberForMatch, button10, buttonPres, view, R.drawable.mantch_1);
+
+        });
+        button12.setOnClickListener(v -> {
+            int buttonNmberForMatch = 7;
+
+            doAfterClick(buttonNmberForMatch, button12, buttonPres, view, R.drawable.mantch_7);
+
+        });
+        button13.setOnClickListener(v -> {
+            int buttonNmberForMatch = 8;
+
+            doAfterClick(buttonNmberForMatch, button13, buttonPres, view, R.drawable.mantch_8);
+
+        });
+        button14.setOnClickListener(v -> {
+            int buttonNmberForMatch = 9;
+
+            doAfterClick(buttonNmberForMatch, button14, buttonPres, view, R.drawable.mantch_9);
+
+        });
+        button15.setOnClickListener(v -> {
+            int buttonNmberForMatch = 10;
+
+            doAfterClick(buttonNmberForMatch, button15, buttonPres, view, R.drawable.mantch_10);
+
+        });
+
+        button17.setOnClickListener(v -> {
+            int buttonNmberForMatch = 7;
+
+            doAfterClick(buttonNmberForMatch, button17, buttonPres, view, R.drawable.mantch_7);
+
+        });
+        button18.setOnClickListener(v -> {
+            int buttonNmberForMatch = 8;
+
+            doAfterClick(buttonNmberForMatch, button18, buttonPres, view, R.drawable.mantch_8);
+
+        });
+        button19.setOnClickListener(v -> {
+            int buttonNmberForMatch = 9;
+
+            doAfterClick(buttonNmberForMatch, button19, buttonPres, view, R.drawable.mantch_9);
+
+        });
+        button20.setOnClickListener(v -> {
+            int buttonNmberForMatch = 10;
+
+            doAfterClick(buttonNmberForMatch, button20, buttonPres, view, R.drawable.mantch_10);
+
+        });
+        button22.setOnClickListener(v -> {
+            int buttonNmberForMatch = 12;
+
+            doAfterClick(buttonNmberForMatch, button22, buttonPres, view, R.drawable.mantch_12);
+
+        });
+
+        button24.setOnClickListener(v -> {
+            int buttonNmberForMatch = 12;
+
+            doAfterClick(buttonNmberForMatch, button24, buttonPres, view, R.drawable.mantch_12);
+
+        });
+    }
+
+    private void doAfterClick(int buttonNmberForMatch, ImageView buttonClick, ImageView[] safeButtonPres, View v, int drable) {
+        loadImage(drable, buttonClick);
+
+        buttonClick.startAnimation(animRotate);
+        buttonClick.setClickable(false);
+        cheakForNull(buttonClick);
+
+        cheak(buttonNmberForMatch, buttonClick, safeButtonPres[0], drable);
 
     }
 
+    protected void cheakForNull(ImageView buttonClick) {
+        if (buttonPres[0] == null) {
+            buttonPres[0] = buttonClick;
+            Log.d(MYLOG_TEG, "cheakForNull =  " + buttonPres[0]);
 
-    @Override
-    public void mufeDiler() {
-        presenter.safeUsrPoints();
-        presenter.resetPoints();
+        }
+    }
 
-        binding.standTextView.setClickable(false);
-        deackImageView.setClickable(false);
-        cards.clear();
-        addCardsToCards();
+    private void cheak(int buttonNmberForMatch, ImageView buttonLastClic, ImageView safeButtonPres, int drable) {
+        int skirt = R.drawable.skirt;
 
-        while (dilerPoints < mimDilerPoints) {
+        if (presenter.getNamber() != 0) {
+            if (presenter.getNamber() == buttonNmberForMatch) {
+                presenter.setNaber(0);
 
-            if (cards.size() == 0) {
-                addCardsToCards();
+
+                safeButtonPres.setVisibility(View.GONE);
+                this.buttonPres[0] = null;
+
+                buttonLastClic.setVisibility(View.GONE);
+
+                presenter.chakForMathes(true);
+            } else if (presenter.getNamber() != buttonNmberForMatch && presenter.getNamber() != 0) {
+
+
+                presenter.setNaber(0);
+                // loadImage(skirt, safeButtonPres);
+
+                boolean equals = safeButtonPres.equals(buttonLastClic);
+
+                Log.d(MYLOG_TEG, "equals " + equals);
+
+
+                if (!equals) {
+                    loadImage(skirt, safeButtonPres);
+                    this.buttonPres[0] = null;
+
+
+                    countDownTimerConfirmationImageView = new CountDownTimer(MILLIS_IN_FUTURE, 1) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            loadImage(skirt, buttonLastClic);
+
+                        }
+                    }.start();
+
+
+                } else if (equals) {
+                    loadImage(skirt, safeButtonPres);
+                }
+
+                safeButtonPres.setClickable(true);
+                buttonLastClic.setClickable(true);
+
+                presenter.chakForMathes(false);
             }
-            schowCards(random, deackImageView, dilerCardsLinearLayout, "diler");
+        } else if (presenter.getNamber() >= 0) {
+            presenter.setNaber(buttonNmberForMatch);
         }
     }
 
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-    }
-
-    private void schowCards(Random random, ImageView deackImageView, LinearLayout layout, String flag) {
-        if (cardsCaunter > 1) {
-            cardNumber = random.nextInt(cardsCaunter);
-        } else {
-            cardNumber = 0;
-            binding.deackImageView.setClickable(false);
-        }
-
-        Log.d(MYLOG_TEG, "cardNumber " + cardNumber);
-        Log.d(MYLOG_TEG, "cardsCaunter " + cardsCaunter);
-
-        ImageView imageView = new ImageView(getActivity());
-        imageResource = cards.get(cardNumber);
-        imageView.setImageResource(imageResource);
-        cards.remove(cardNumber);
-        cardsCaunter = cards.size() - 1;
-        layout.addView(imageView);
-        cardsCaunter--;
-
-        presenter.setPointsAndCheakForWin(imageResource, deackImageView, flag, mimDilerPoints);
-    }
-
-
-    private void addCardsToCards() {
-        cards.add(R.drawable.bub_2);
-        cards.add(R.drawable.bub_3);
-        cards.add(R.drawable.bub_4);
-        cards.add(R.drawable.bub_5);
-        cards.add(R.drawable.bub_6);
-        cards.add(R.drawable.bub_7);
-        cards.add(R.drawable.bub_8);
-        cards.add(R.drawable.bub_9);
-        cards.add(R.drawable.bub_10);
-        cards.add(R.drawable.bub_a);
-        cards.add(R.drawable.bub_j);
-        cards.add(R.drawable.bub_k);
-        cards.add(R.drawable.bub_q);
-        cards.add(R.drawable.c_2);
-        cards.add(R.drawable.c_3);
-        cards.add(R.drawable.c_4);
-        cards.add(R.drawable.c_5);
-        cards.add(R.drawable.c_6);
-        cards.add(R.drawable.c_7);
-        cards.add(R.drawable.c_8);
-        cards.add(R.drawable.c_9);
-        cards.add(R.drawable.c_10);
-        cards.add(R.drawable.c_j);
-        cards.add(R.drawable.c_q);
-        cards.add(R.drawable.c_k);
-        cards.add(R.drawable.c_a);
-        cards.add(R.drawable.k_2);
-        cards.add(R.drawable.k_3);
-        cards.add(R.drawable.k_4);
-        cards.add(R.drawable.k_5);
-        cards.add(R.drawable.k_6);
-        cards.add(R.drawable.k_7);
-        cards.add(R.drawable.k_8);
-        cards.add(R.drawable.k_9);
-        cards.add(R.drawable.k_10);
-        cards.add(R.drawable.k_j);
-        cards.add(R.drawable.k_q);
-        cards.add(R.drawable.k_k);
-        cards.add(R.drawable.k_a);
-        cards.add(R.drawable.p_2);
-        cards.add(R.drawable.p_3);
-        cards.add(R.drawable.p_4);
-        cards.add(R.drawable.p_5);
-        cards.add(R.drawable.p_6);
-        cards.add(R.drawable.p_7);
-        cards.add(R.drawable.p_8);
-        cards.add(R.drawable.p_9);
-        cards.add(R.drawable.p_10);
-        cards.add(R.drawable.p_j);
-        cards.add(R.drawable.p_q);
-        cards.add(R.drawable.p_k);
-        cards.add(R.drawable.p_a);
-    }
-
-
-    @Override
-    public void showProgress(ProgressBar progressBar) {
-
-    }
-
-    @Override
-    public void hideProgress(ProgressBar progressBar) {
-
-    }
 
     @Override
     public void showMessage(String message) {
-        binding.standTextView.setClickable(false);
-        deackImageView.setClickable(false);
 
-        Log.d(MYLOG_TEG, "showMessage:  " + message);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage(message)
@@ -230,26 +310,31 @@ public class GameFragment extends BaseBindingFragment<GamePresenter, FragmentGam
     }
 
 
+    @Override
+    public void showEndGame(MainActivityRouter mainActivityRouter, boolean flag, int points) {
+
+        mainActivityRouter.showWinFragment(flag, points);
+    }
+
     @SuppressLint("SetTextI18n")
     @Override
     public void setPoints(int points) {
-        binding.poinintsTextView.setText(getText(R.string.gamer_points) + String.valueOf(points));
+        binding.poinintsTextView.setText(getText(R.string.points) + String.valueOf(points));
 
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
-    public void setMimDilerPoints(int points) {
-
-        dilerPoints = points;
-        binding.dilerPointsTextView.setText(getText(R.string.diler_points) + String.valueOf(dilerPoints));
+    public void setLifesLeft(int lifes) {
+        binding.livesTextView.setText(getText(R.string.lives) + String.valueOf(lifes));
 
     }
-
 
     @Override
     public void showGameFragment(MainActivityRouter mainActivityRouter) {
         mainActivityRouter.showLogoFragment();
     }
 
+    public void loadImage(int part, ImageView button) {
+        Picasso.get().load(part).into(button);
+    }
 }
