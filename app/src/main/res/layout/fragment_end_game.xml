@@ -17,6 +17,7 @@
             android:gravity="center"
             android:text="@string/you_win"
             android:textAllCaps="true"
+            android:textColor="@android:color/white"
             android:textSize="80dp"
             android:textStyle="bold"
             mankeyFruits:layout_constraintBottom_toTopOf="@+id/guideline2"
@@ -50,6 +51,7 @@
                 android:fontFamily="@font/rockletter_simple"
                 android:text="New game"
                 android:textAllCaps="true"
+                android:textColor="@android:color/white"
                 android:textSize="30dp"
                 android:textStyle="bold" />
 
@@ -62,6 +64,7 @@
                 android:background="@color/onColor"
                 android:fontFamily="@font/rockletter_simple"
                 android:text="exit"
+                android:textColor="@android:color/white"
                 android:textAllCaps="true"
                 android:textSize="30dp" />
         </LinearLayout>
@@ -88,6 +91,7 @@
             android:fontFamily="@font/rockletter_simple"
             android:text="@string/points"
             android:textAllCaps="true"
+            android:textColor="@android:color/white"
             android:textSize="30dp"
             android:textStyle="bold"
             mankeyFruits:layout_constraintBottom_toTopOf="@+id/guideline3"
