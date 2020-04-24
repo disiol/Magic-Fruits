@@ -36,29 +36,6 @@ public class MainActivity extends BaseActivity {
 
         if (preferencesManager.getMyFirstTime()) {
             try {
-    //            Uri appLinkData2 = appLinkIntent.getData();
-    //            if (appLinkData2 != null) {
-    //                String url = appLinkData2.toString();
-    //                if (BuildConfig.DEBUG) {
-    //                    Log.d("my Log" + this.getLocalClassName(), "App Link appLinkData: " + url);
-    //                }
-    //                String string = convertArrayToStringMethod(url.split(DEPLINK));
-    //
-    //                if (BuildConfig.DEBUG) {
-    //                    Log.d("MyLog" + this.getLocalClassName(), "App Link appLinkData url: " + url);
-    //
-    //                    Log.d("MyLog" + this.getLocalClassName(), "App Link appLinkData string: " + string);
-    //                }
-    //                String token = URL_FOR_CHECK;
-    //
-    //                if (BuildConfig.DEBUG) {
-    //                    Log.d("MyLog" + this.getLocalClassName(), "App Link appLinkData token: " + token);
-    //                }
-    //
-    //                preferencesManager.setURL(token);
-    //
-    //
-    //            }
 
                 AppLinkData.fetchDeferredAppLinkData(this, appLinkData -> {
                     AppLinkData appLinkData1 = appLinkData;
