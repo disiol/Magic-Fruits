@@ -2,6 +2,7 @@ package com.magicfruitsguesscolor.ui.fragments.game.view;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -331,7 +332,9 @@ public class GameFragment extends BaseBindingFragment<GamePresenter, FragmentGam
 
     @Override
     public void showGameFragment(MainActivityRouter mainActivityRouter) {
-        mainActivityRouter.showLogoFragment();
+        Intent i = new Intent( getActivity() , this.getClass() );
+        getActivity().finish();
+        this.startActivity(i);
     }
 
     public void loadImage(int part, ImageView button) {
