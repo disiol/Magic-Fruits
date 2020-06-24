@@ -34,47 +34,49 @@ public class MainActivity extends BaseActivity {
         Intent appLinkIntent = getIntent();
         String appLinkAction = appLinkIntent.getAction();
 
-        if (preferencesManager.getMyFirstTime()) {
-            try {
+//        if (preferencesManager.getMyFirstTime()) {
+//            try {
+//
+//                AppLinkData.fetchDeferredAppLinkData(this, appLinkData -> {
+//                    AppLinkData appLinkData1 = appLinkData;
+//                    if (appLinkData1 == null || appLinkData1.getTargetUri() == null) {
+//                        Log.e("MyLog", "deeplink = null");
+//                        mainActivityRouter.showLogoFragment();
+//
+//
+//                    } else {
+//
+//                        String url = appLinkData1.getTargetUri().toString();
+//                        if (BuildConfig.DEBUG) {
+//                            Log.d("MyLog", "deeplink = " + url);
+//
+//                            Log.d("my Log" + this.getLocalClassName(), "App Link appLinkData: " + url);
+//                        }
+//                        String string = convertArrayToStringMethod(url.split(DEPLINK));
+//
+//                        if (BuildConfig.DEBUG) {
+//                            Log.d("MyLog" + this.getLocalClassName(), "App Link appLinkData url: " + url);
+//
+//                            Log.d("MyLog" + this.getLocalClassName(), "App Link appLinkData string: " + string);
+//                        }
+//
+//
+//                        preferencesManager.setURL(string);
+//                        mainActivityRouter.showLogoFragment();
+//
+//                    }
+//                });
+//            } catch (Exception e) {
+//                Log.e("my Log" + this.getLocalClassName(), "App Link appLinkData: " + e.toString());
+//
+//                e.printStackTrace();
+//            }
+//        } else if (!preferencesManager.getMyFirstTime()){
+//            mainActivityRouter.showLogoFragment();
+//
+//        }
 
-                AppLinkData.fetchDeferredAppLinkData(this, appLinkData -> {
-                    AppLinkData appLinkData1 = appLinkData;
-                    if (appLinkData1 == null || appLinkData1.getTargetUri() == null) {
-                        Log.e("MyLog", "deeplink = null");
-                        mainActivityRouter.showLogoFragment();
-
-
-                    } else {
-
-                        String url = appLinkData1.getTargetUri().toString();
-                        if (BuildConfig.DEBUG) {
-                            Log.d("MyLog", "deeplink = " + url);
-
-                            Log.d("my Log" + this.getLocalClassName(), "App Link appLinkData: " + url);
-                        }
-                        String string = convertArrayToStringMethod(url.split(DEPLINK));
-
-                        if (BuildConfig.DEBUG) {
-                            Log.d("MyLog" + this.getLocalClassName(), "App Link appLinkData url: " + url);
-
-                            Log.d("MyLog" + this.getLocalClassName(), "App Link appLinkData string: " + string);
-                        }
-
-
-                        preferencesManager.setURL(string);
-                        mainActivityRouter.showLogoFragment();
-
-                    }
-                });
-            } catch (Exception e) {
-                Log.e("my Log" + this.getLocalClassName(), "App Link appLinkData: " + e.toString());
-
-                e.printStackTrace();
-            }
-        } else if (!preferencesManager.getMyFirstTime()){
-            mainActivityRouter.showLogoFragment();
-
-        }
+        mainActivityRouter.showGameFragment();
 
 
     }
